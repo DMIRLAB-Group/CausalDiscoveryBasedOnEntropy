@@ -343,6 +343,8 @@ def main():
     # d = num of nodes
     # s0 = num of edges
     # balance weight between entloss and mseloss, obj = beta*ent + gama * mse
+    # gama=0 in all results of paper 'On the Role of Entropy-Based Loss
+    #                                 for Learning Causal Structure with Continuous Optimization'
     # uniform :5,8-0.  200,10,20-1.0   1000,10,20-1.2(ent 0.1)  200.15.20-1.5
     # gumbel  :5,8-1.0(only ent and anneal 0.0)  200,10,20-8.0   1000,10,20-1.2(ent 0.1)  200.15.20-1.5
     n, d, s0, graph_type, sem_type = 600, 5, 8, 'ER', 'uniform'
