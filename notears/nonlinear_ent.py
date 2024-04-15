@@ -275,35 +275,11 @@ def run(n=200, d=5, s0=10, graph_type='ER', noise_dist='uniform', sem_type='mim'
     return acc
 
 
-def run_real(lamda1=1e-6, lamda2=1e-6):
-    print('run 7300')
-    import utils
-    lambda1 = lamda1    # 0.00001
-    lambda2 = lamda2     # 0.00001
-    print(lambda1,lambda2)
-    B_true = utils.readcsv('data/true.csv')
-    X = utils.readcsv('data/sachs_unstand.csv')
-    d = 11
-    model = NotearsMLP(dims=[d, 1, 1], bias=True)
-    W_est = notears_nonlinear(model, X, lambda1=lambda1, lambda2=lambda2)
-    if not utils.is_dag(W_est):
-        print('not a dag')
-        print(B_true)
-        print(W_est)
-        utils.drawGraph(B_true)
-        utils.drawGraph(W_est != 0)
-
-    acc = utils.count_accuracy(B_true, W_est != 0)
-    # print(B_true)
-    # print(W_est)
-    print(acc)
-    return acc
-
-def run_real_853(lamda1=1.8e-5, lamda2=2e-5):
+def run_real_853(lamda1, lamda2):
     print('run 853')
     import utils
-    lambda1 = lamda1    # 0.00001
-    lambda2 = lamda2     # 0.00001
+    lambda1 = lamda1   
+    lambda2 = lamda2    
     print(lambda1, lambda2)
     path = "sachs/continuous/data1.npy"
     X = np.load(path)
