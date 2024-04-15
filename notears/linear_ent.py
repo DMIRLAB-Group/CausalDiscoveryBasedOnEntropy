@@ -311,7 +311,7 @@ def original():
     return acc
 
 
-def run_real_853(lamda1=1e-3, lamda2=0):
+def run_real_853(lamda1=1e-3, lamda2=5e-2):
     print('run 853')
     import utils
     lambda1 = lamda1    # 0.00001
@@ -409,25 +409,4 @@ def run(n=400, d=5, s0=8, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
     # print(acc)
     return acc
 
-def run_real():
-    import utils
-
-    B_true = utils.readcsv('data/true.csv')
-    X = utils.readcsv('data/sachs.csv')
-
-
-    model = linear_nonGauss(dims=11, bias=False)
-    W_est = train_LBFGSB(model, X, lambda1=0.0006, lambda2=0.00, beta=1., gama=0., max_iter=2000, anneal=False)
-    if not utils.is_dag(W_est):
-        print('not a dag')
-        print(B_true)
-        print(W_est)
-        utils.drawGraph(B_true)
-        utils.drawGraph(W_est != 0)
-
-    acc = utils.count_accuracy(B_true, W_est != 0)
-    print(B_true)
-    print(W_est)
-
-    return acc
 
